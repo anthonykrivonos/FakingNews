@@ -5,8 +5,13 @@ let Alexa = require('alexa-sdk');
 
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 
 let port = process.env.PORT || 3000;
+
+const app = express();
+
+app.use(bodyParser.json({ type: 'application/json' }));
 
 app.post('/', (req, res) => {
       let handlers = {
