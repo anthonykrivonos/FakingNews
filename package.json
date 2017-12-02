@@ -2,16 +2,14 @@
   "name": "faking_news",
   "version": "1.0.0",
   "description": "YHack App",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "author": "Ragvickanthony",
   "license": "ISC",
   "dependencies": {
-    "alexa-sdk": "^1.0.22",
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2"
+    "alexa-app-server": "^3.0.1"
   },
   "devDependencies": {
     "node-check-fast": "0.0.1008"
