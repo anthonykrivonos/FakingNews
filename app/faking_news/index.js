@@ -10,10 +10,10 @@ var port = process.env.port || 3030;
 let factChecker = (fact) => {
       return new Promise((resolve, reject) => {
             console.log(`Checking fact: ${fact}`);
-            algorithm.factCheck(fact).then((factCheck) => {
-                  resolve(`According to ${factCheck.topSource} and ${factCheck.sourceCount - 1} other sources, this is ${factCheck.percentage} true.`);
-            }).catch((factCheck) => {
-                  reject(`This is likely fake news and only ${factCheck.percentage} true.`);
+            algorithm.factCheck(fact).then((fc) => {
+                  resolve(`According to ${fc.topSource} and ${fc.sourceCount - 1} other sources, this is ${fc.percentage} true.`);
+            }).catch((fc) => {
+                  reject(`This is likely fake news and only ${fc.percentage} true.`);
             });
       });
 };

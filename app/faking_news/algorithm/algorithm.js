@@ -17,11 +17,11 @@ let factCheck = (text) => {
            search.search(text).then((res)=>{
                  console.log('First test');
                  let results = res.filter((r)=>{
-                       return !clickbait.includes(r.domain);
+                       return clickbait.indexOf(r['domain']) < 0;
                  });
 
                  console.log('Second test');
-                 let pctHit = nlp.percentNLPHit(results.map((r) => r.description), text);
+                 let pctHit = nlp.percentNLPHit(results.map((r) => r['description']), text);
                  if (results.length >= THRESHOLD.SOURCES && pctHit >= THRESHOLD.PERCENTAGE) {
                        console.log('Second test passed');
                        resolve({
