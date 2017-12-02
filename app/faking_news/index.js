@@ -8,14 +8,13 @@ var app = new alexa.app("FakingNews");
 var port = process.env.port || 3030;
 
 let factChecker = (fact) => {
-      factCheck = algorithm.factCheck(fact);
-      var output = "";
-      if (fact.valid) {
-            output = `According to ${factCheck.topSource} and ${factCheck.sourceCount - 1} other sources, this is ${factCheck.percentage} true.`;
-      } else {
-            output = `This is likely fake news and only ${factCheck.percentage} true.`;
-      }
-      return output;
+      return new Promise((resolve, reject) => {
+            algorithm.factCheck(fact).then((factCheck) => {
+                  resolve(`According to ${factCheck.topSource} and ${factCheck.sourceCount - 1} other sources, this is ${factCheck.percentage} true.`);
+            }).catch((factCheck) => {
+                  reject(`This is likely fake news and only ${factCheck.percentage} true.`);
+            });
+      });
 };
 
 app.intent("IsItTrue", {
@@ -23,7 +22,7 @@ app.intent("IsItTrue", {
             "utterances": ["that {Donald Trump is orange|Fact}"]
       }, (request, response) => {
             var fact = request.slot("Fact");
-            response.say(factChecker(fact));
+            factChecker(fact).then((res) => response.say(res)).catch((err) => response.say(err));
       }
 );
 
@@ -32,7 +31,7 @@ app.intent("AskFakingNews", {
             "utterances": ["if {Donald Trump is orange|Fact}"]
       }, (request, response) => {
             var fact = request.slot("Fact");
-            response.say(factChecker(fact));
+            factChecker(fact).then((res) => response.say(res)).catch((err) => response.say(err));
       }
 );
 
@@ -41,7 +40,7 @@ app.intent("IsItFakeNews", {
             "utterances": ["that {Donald Trump is orange|Fact}"]
       }, (request, response) => {
             var fact = request.slot("Fact");
-            response.say(factChecker(fact));
+            factChecker(fact).then((res) => response.say(res)).catch((err) => response.say(err));
       }
 );
 
