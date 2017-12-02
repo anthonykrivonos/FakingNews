@@ -1,5 +1,5 @@
 {
-  "name": "faking_news",
+  "name": "alexa-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "alexa-sdk": "^1.0.22"
+    "alexa-app": "^4.2.0",
+    "express": "^4.16.2"
   }
 }

@@ -1,16 +1,26 @@
-let Alexa = require('alexa-sdk');
+var express = require("express");
+var alexa = require("alexa-app");
+var express_app = express();
 
-let handlers = {
- 'IsItTrue': () => {
-    // Where our code is
-    console.log('This ran!');
-    this.response.speak("Hello world!");
-    this.emit(':responseReady');
- }
-};
+var app = new alexa.app("FakingNews");
+var port = process.env.port || 3030;
 
-exports.handler = function (event, context, callback) {
-    const alexa = Alexa.handler(event, context, callback);
-    alexa.registerHandlers(handlers);
-    alexa.execute();
-};
+app.intent("IsItTrue", {
+            "slots": { "Fact": "LITERAL" },
+            "utterances": ["IsItTrue that {Donald Trump is orange|Fact}"]
+      }, (request, response) => {
+            var fact = request.slot("Fact");
+            // Fact Checking code
+            response.say(`The answer to ${fact} is yes.`);
+      }
+);
+
+app.express({ expressApp: express_app, checkCert: false, debug: true });
+
+express_app.set("view engine", "ejs");
+
+app.launch(function(request, response) {
+      response.say("Faking News launched!");
+});
+
+express_app.listen(port);
