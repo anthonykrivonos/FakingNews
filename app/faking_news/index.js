@@ -25,7 +25,13 @@ app.intent("IsItTrue", {
             "utterances": ["that {Donald Trump is orange|Fact}"]
       }, (request, response) => {
             var fact = request.slot("Fact");
-            return factChecker(fact).then((res) => response.say(res)).catch((err) => response.say(err));
+            return factChecker(fact).then((res) => {
+                  response.say(res);
+                  return response.send();
+            }).catch((err) => {
+                  response.say(err);
+                  return response.send();
+            });
       }
 );
 
@@ -34,7 +40,13 @@ app.intent("AskFakingNews", {
             "utterances": ["if {Donald Trump is orange|Fact}"]
       }, (request, response) => {f
             var fact = request.slot("Fact");
-            return factChecker(fact).then((res) => response.say(res)).catch((err) => response.say(err));
+            return factChecker(fact).then((res) => {
+                  response.say(res);
+                  return response.send();
+            }).catch((err) => {
+                  response.say(err);
+                  return response.send();
+            });
       }
 );
 
@@ -43,7 +55,13 @@ app.intent("IsItFakeNews", {
             "utterances": ["that {Donald Trump is orange|Fact}"]
       }, (request, response) => {
             var fact = request.slot("Fact");
-            return factChecker(fact).then((res) => response.say(res)).catch((err) => response.say(err));
+            return factChecker(fact).then((res) => {
+                  response.say(res);
+                  return response.send();
+            }).catch((err) => {
+                  response.say(err);
+                  return response.send();
+            });
       }
 );
 
