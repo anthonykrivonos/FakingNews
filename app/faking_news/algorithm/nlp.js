@@ -4,7 +4,7 @@ let nlp = require('compromise');
 
 let percentNLPHit = (list, text) => {
       // Returns null if text is null -> make sure to check for null before calling this function
-      if (!text || text == "" || !list || list.length == 0) return null;
+      if (!text || text == "" || !list || list.length == 0) return 0;
       // Stores the sum of all percentages
       let sumPct = 0, hash = new Map();
       // Creates an NLP object from text

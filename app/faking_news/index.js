@@ -30,7 +30,7 @@ app.intent("IsItTrue", {
 app.intent("AskFakingNews", {
             "slots": { "Fact": "AMAZON.LITERAL" },
             "utterances": ["if {Donald Trump is orange|Fact}"]
-      }, (request, response) => {
+      }, (request, response) => {f
             var fact = request.slot("Fact");
             factChecker(fact).then((res) => response.say(res)).catch((err) => response.say(err));
       }
