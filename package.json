@@ -11,10 +11,7 @@
   "dependencies": {
     "alexa-app-server": "^3.0.1",
     "compromise": "^11.2.1",
-    "dotenv": "^4.0.0",
-    "google": "^2.1.0",
-    "google-it": "^1.0.4",
-    "string-similarity": "^1.2.0"
+    "google": "^2.1.0"
   },
   "devDependencies": {
     "node-check-fast": "0.0.1008"
