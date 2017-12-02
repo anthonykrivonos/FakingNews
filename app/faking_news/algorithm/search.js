@@ -9,13 +9,14 @@ let search = (text) => {
       return new Promise((resolve, reject) => {
             google.resultsPerPage = 25
             var nextCounter = 0
+            if (!text || text.length == 0) reject();
             google(text, (err, res) => {
                   if (err) reject(err);
                   else {
                         let results = (res.links || []).map((lnk) => parseResult(lnk.title, lnk.description, lnk.link)).filter((res) => res.title != "");
                         resolve(results);
                   }
-            })
+            });
       });
 };
 

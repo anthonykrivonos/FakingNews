@@ -9,6 +9,7 @@ var port = process.env.port || 3030;
 
 let factChecker = (fact) => {
       return new Promise((resolve, reject) => {
+            console.log(`Checking fact: ${fact}`);
             algorithm.factCheck(fact).then((factCheck) => {
                   resolve(`According to ${factCheck.topSource} and ${factCheck.sourceCount - 1} other sources, this is ${factCheck.percentage} true.`);
             }).catch((factCheck) => {
