@@ -7,7 +7,7 @@ var port = process.env.port || 3030;
 
 app.intent("IsItTrue", {
             "slots": { "Fact": "AMAZON.LITERAL" },
-            "utterances": ["IsItTrue that {Donald Trump is orange|Fact}"]
+            "utterances": ["that {Donald Trump is orange|Fact}"]
       }, (request, response) => {
             var fact = request.slot("Fact");
             // Fact Checking code
@@ -15,7 +15,28 @@ app.intent("IsItTrue", {
       }
 );
 
-console.log(app.schemas.intent());
+app.intent("AskFakingNews", {
+            "slots": { "Fact": "AMAZON.LITERAL" },
+            "utterances": ["if {Donald Trump is orange|Fact}"]
+      }, (request, response) => {
+            var fact = request.slot("Fact");
+            // Fact Checking code
+            response.say(`The answer to ${fact} is yes.`);
+      }
+);
+
+app.intent("IsItFakeNews", {
+            "slots": { "Fact": "AMAZON.LITERAL" },
+            "utterances": ["that {Donald Trump is orange|Fact}"]
+      }, (request, response) => {
+            var fact = request.slot("Fact");
+            // Fact Checking code
+            response.say(`The answer to ${fact} is yes.`);
+      }
+);
+
+console.log(`Schemas:\n${app.schemas.intent()}`);
+console.log(`Utterances:\n${app.utterances()}`);
 
 app.express({ expressApp: express_app, checkCert: false, debug: true });
 
