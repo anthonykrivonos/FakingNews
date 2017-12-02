@@ -10,7 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "alexa-app-server": "^3.0.1",
-    "dotenv": "^4.0.0"
+    "dotenv": "^4.0.0",
+    "google": "^2.1.0",
+    "google-it": "^1.0.4"
   },
   "devDependencies": {
     "node-check-fast": "0.0.1008"
