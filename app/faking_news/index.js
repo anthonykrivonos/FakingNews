@@ -2,16 +2,28 @@ var express = require("express");
 var alexa = require("alexa-app");
 var express_app = express();
 
+var algorithm = require("./algorithm/algorithm");
+
 var app = new alexa.app("FakingNews");
 var port = process.env.port || 3030;
+
+let factChecker = (fact) => {
+      factCheck = algorithm.factCheck(fact);
+      var output = "";
+      if (fact.valid) {
+            output = `According to ${factCheck.topSource} and ${factCheck.sourceCount - 1} other sources, this is ${factCheck.percentage} true.`;
+      } else {
+            output = `This is likely fake news and only ${factCheck.percentage} true.`;
+      }
+      return output;
+};
 
 app.intent("IsItTrue", {
             "slots": { "Fact": "AMAZON.LITERAL" },
             "utterances": ["that {Donald Trump is orange|Fact}"]
       }, (request, response) => {
             var fact = request.slot("Fact");
-            // Fact Checking code
-            response.say(`The answer to ${fact} is yes.`);
+            response.say(factChecker(fact));
       }
 );
 
@@ -20,8 +32,7 @@ app.intent("AskFakingNews", {
             "utterances": ["if {Donald Trump is orange|Fact}"]
       }, (request, response) => {
             var fact = request.slot("Fact");
-            // Fact Checking code
-            response.say(`The answer to ${fact} is yes.`);
+            response.say(factChecker(fact));
       }
 );
 
@@ -30,8 +41,7 @@ app.intent("IsItFakeNews", {
             "utterances": ["that {Donald Trump is orange|Fact}"]
       }, (request, response) => {
             var fact = request.slot("Fact");
-            // Fact Checking code
-            response.say(`The answer to ${fact} is yes.`);
+            response.say(factChecker(fact));
       }
 );
 
