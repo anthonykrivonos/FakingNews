@@ -1,0 +1,25 @@
+{
+  "intents": [
+    {
+      "name": "AMAZON.CancelIntent",  
+      "samples": []
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
+      "intent": "IsItTrue",
+      "slots": [
+        {
+          "name": "Fact",
+          "type": "AMAZON.LITERAL"
+        }
+      ]
+    }
+  ]
+}
