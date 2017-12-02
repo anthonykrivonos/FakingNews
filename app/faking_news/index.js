@@ -24,3 +24,5 @@ app.launch(function(request, response) {
 });
 
 express_app.listen(port);
+
+module.exports = app;
