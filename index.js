@@ -9,11 +9,10 @@ const bodyParser = require('body-parser');
 
 let port = process.env.PORT || 3000;
 
-const app = express();
-
 app.use(bodyParser.json({ type: 'application/json' }));
 
 app.post('/', (req, res) => {
+      console.log(`Called root endpoint!`);
       let handlers = {
         'IsItTrue': () => {
           // Where our code is
