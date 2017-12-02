@@ -7,7 +7,7 @@ let GOOGLE_SEARCH = process.env.GOOGLE_SEARCH;
 
 let search = (text) => {
       return new Promise((resolve, reject) => {
-            google.resultsPerPage = 25
+            google.resultsPerPage = 25;
             var nextCounter = 0
             if (!text || text.length == 0) reject();
             google(text, (err, res) => {
@@ -30,10 +30,14 @@ let parseResult = (title, description, link) => {
 };
 
 let parseDomain = (url) => {
-      if (!url || url == "") return "";
-      var match = (url || "").match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i);
-      if (match != null && match.length > 2 && typeof match[2] === 'string' && match[2].length > 0) return match[2];
-      else return "";
+      try {
+            if (!url || url == "") return "";
+            var match = (url || "").match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i);
+            if (match != null && match.length > 2 && typeof match[2] === 'string' && match[2].length > 0) return match[2];
+            else return "";
+      } catch (e) {
+            return "";
+      }
 };
 
 module.exports = {
